@@ -1,0 +1,2 @@
+crear
+npx sequelize-cli seed:generate --name nombre-del-seeder
