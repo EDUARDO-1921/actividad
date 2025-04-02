@@ -1,8 +1,14 @@
 import { useEffect, useState } from 'react'
 import axios  from 'axios';
 import Reserva from './reserva'
+import{useNavigate} from "react-router-dom";
+import{createContext, useContext}from 'react'
+// ccrear context
+const useContext=createContext();
 function Usuarios() {
   const[users, setUsers]=useState([]);
+  const[selectedUser,setselectUser]=useState(null);
+  const Navigate =useNavigate();
   const listUser= async()=>{
 try{
  const respuesta=await axios.get("http://localhost:5445/apiusuario/");
@@ -16,6 +22,7 @@ console.log("error presentado")
     listUser();
   },[])
   return(
+    <useContext value={selectedUser}>
     <div>
       <h1>Usuario</h1>
       <table>
@@ -37,6 +44,7 @@ console.log("error presentado")
                 
       <Reserva></Reserva>
     </div>
+    </useContext>
   )
 
 }
